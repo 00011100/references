@@ -1,0 +1,21 @@
+[-]======================================[-]
+    Dirb
+[-]======================================[-]
+
+- ---] Quick Commands
+======================
+
+# basic recursive fuzz
+dirb http://10.11.1.10/ /usr/share/dirb/wordlists/common.txt
+
+# fuzz with extensions
+dirb http://10.11.1.10/ -X .php
+
+
+- ---] Related Commands
+======================
+
+
+
+- ---] Misc Notes
+======================

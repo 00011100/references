@@ -1,0 +1,20 @@
+[-]======================================[-]
+    cracking
+[-]======================================[-]
+
+- ---] Quick Commands
+======================
+
+[ Cracking mscash / mscache (DCC2) ]
+john --format=mscash2 --wordlist=/opt/Wordlists/famous/rockyou.txt mhash
+hashcat -m2100 '$DCC2$10240#daisy#b41c8e6a3875e0dd7793f58af6925d0d' /opt/Wordlists/famous/rockyou.txt --force --potfile-disable
+
+
+
+- ---] Related Commands
+======================
+
+
+
+- ---] Misc Notes
+======================

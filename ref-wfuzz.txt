@@ -1,0 +1,13 @@
+[-]======================================[-]
+    wfuzz
+[-]======================================[-]
+
+wfuzz shows character return counts which might be able to help you decide what is false positive and what isn't.
+
+
+- ---] Quick Commands
+======================
+
+[ basic ]
+# -c = color | -z file <wordlist> = input file | --hc 404 = Ignore 404's
+wfuzz -c -z file, /usr/share/wordlists/dirb/common.txt --hc 404 http://10.11.1.10/

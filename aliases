@@ -1,0 +1,15 @@
+# references aliases
+
+alias ref-accesschk="cat ~/Documents/references/ref-accesschk.txt"
+alias ref-asrep-roasting="cat ~/Documents/references/ref-asrep-roasting.txt"
+alias ref-cracking="cat ~/Documents/references/ref-cracking.txt"
+alias ref-crackmapexec="cat ~/Documents/references/ref-crackmapexec.txt"
+alias ref-dirb="cat ~/Documents/references/ref-dirb.txt"
+alias ref-kerberoasting="cat ~/Documents/references/ref-kerberoasting.txt"
+alias ref-mimikatz="cat ~/Documents/references/ref-mimikatz.txt"
+alias ref-msfvenom="cat ~/Documents/references/ref-msfvenom.txt"
+alias ref-passthehash="cat ~/Documents/references/ref-passthehash.txt"
+alias ref-postexploit-windows="cat ~/Documents/references/ref-postexploit-windows.txt"
+alias ref-reverse-shells="cat ~/Documents/references/ref-reverse-shells.txt"
+alias ref-sqli="cat ~/Documents/references/ref-sqli.txt"
+alias ref-wfuzz="cat ~/Documents/references/ref-wfuzz.txt"
