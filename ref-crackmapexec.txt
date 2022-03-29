@@ -6,7 +6,20 @@
 - ---] Quick Commands
 ======================
 
-[ null session ]
+
+- --] SMB
+
+# null session 
 crackmapexec smb 10.1.11.20 -u '' -p ''
+
+# bruteforce SMB login
+crackmapexec --verbose smb 10.11.1.220 -d thinc.local -u kevin -p  /usr/share/wordlists/wfuzz/others/common_pass.txt
+
+
+
+- --] WINRM
+
+# winrm bruteforce
+crackmapexec winrm 10.11.1.123 -d xor.com -u administrator -p /usr/share/wordlists/wfuzz/others/common_pass.txt
 
 

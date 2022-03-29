@@ -2,6 +2,17 @@
     SQL injection
 [-]======================================[-]
 
+- ---] References
+
+# OSCP SQLi Notes
+https://notchxor.github.io/oscp-notes/2-web/sqli/
+
+# Payload all the things - SQL injections cheat sheet
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
+
+# Manual SQL Injection walkthrough
+https://sushant747.gitbooks.io/total-oscp-guide/content/sql-injections.html
+
 - ---] Summary
 ======================
 
@@ -31,5 +42,3 @@
 - ---] Related Commands
 ======================
 
-# Payload all the things - SQL injections cheat sheet
-https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
