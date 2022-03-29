@@ -1,0 +1,16 @@
+[-]======================================[-]
+    powershell 
+[-]======================================[-]
+
+- ---] References
+=====================
+# Powershell Payload Execution and Evasion
+https://medium.com/swlh/fun-with-powershell-payload-execution-and-evasion-f5051fd149b2
+
+
+
+
+- ---] Enumeration
+=====================
+# Can you write here?
+cd / ;Get-ChildItem -Recurse -Directory | ForEach-Object {New-Item -ItemType file -Path "$($_.FullName)" -Name "I CAN WRITE HERE!" }
