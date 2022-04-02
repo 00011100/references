@@ -13,5 +13,5 @@ alias ref-postexploit-windows="cat ~/Documents/references/ref-postexploit-window
 alias ref-reverse-shells="cat ~/Documents/references/ref-reverse-shells.txt"
 alias ref-sqli="cat ~/Documents/references/ref-sqli.txt"
 alias ref-wfuzz="cat ~/Documents/references/ref-wfuzz.txt"
-alias ref-powershell="cat ~/Documents/references/ref-powershell"
-alias ref-impacket-mssqlclient="cat ~/Documents/references/ref-impacket-mssqlclient"
+alias ref-powershell="cat ~/Documents/references/ref-powershell.txt"
+alias ref-impacket-mssqlclient="cat ~/Documents/references/ref-impacket-mssqlclient.txt"
