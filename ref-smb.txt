@@ -1,0 +1,22 @@
+[-]======================================[-]
+    smb
+[-]======================================[-]
+
+- ---] References
+=====================
+
+
+
+- ---] Windows
+=====================
+
+# Connect to SMB server 
+net view \\ip-addr
+
+# view remote contents
+dir \\ip-addr
+
+# Copy file from SMB
+copy \\ip-addr\share-name\file out-file
+
+# This can be used in conjuction with impacket-smbserver 
