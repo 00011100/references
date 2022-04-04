@@ -2,7 +2,75 @@
     SQL injection
 [-]======================================[-]
 
+- ---] Overview
+======================
+                                                                                                                                 
+                           SQL Injection                         
+                              |       |                          
+                              |       |                          
+                              +       +                          
+             +-----------------   |   +-----------------         
+             |                    |                    |         
+             |                    |                    |         
+             |                    |                    |         
+             |                    |                    |         
+             |                    |                    |         
+             |                    |                    |         
+             |                    |                    |         
+ In-Band (Classic SQLi)      Blind SQLI           Out-Of-Band    
+      |          |            |      |                           
+      |          |            |      |                           
+      +          +            +      +                           
+   Error        Union      Boolean  Time                    
+
+
+
+- -] Error-Based: 
+----------------
+Force the database to generate an error, giving you more information on how things operate on the backend. A single quote might break the backend query, and generate an error at the application level. This might show you the version of the backend or the exact query.
+
+- -] Union-based
+----------------
+A technique that leverages the union operator that combines the results of two queries, into a single result set. We output the result of what the application makes, and whatever we choose using the union operator. 
+
+
+- -] Inferential (Blind)
+----------------
+A blind SQLi vulnerability means there is no transfer of data via the application. We are stuck asking the application asking true or false injections with Boolean, or using time injection in order to determine what you're asking is correct within the database or not. These are a bit more difficult, however the impact of exploiting the vulnerability is just as bad as in-band / classic SQLi.
+
+- -] Boolean
+----------------
+Boolean-Based Blind SQLI is a blind SQLi technique taht uses Boolean conditions to return a different result depending on whether the query returns a TRUE or FALSE result.
+
+- -] Time
+----------------
+Time-based SQLi is a blind SQLi technique that relies on the database pausing for a specified amount of time, then returning the results, indicating a successful SQL query execution.
+Example:
+    If the first character of the administrator's hashed password is an 'a', wait 10 seconds. 
+        --> Response takes 10 seconds --> first letter is 'a' --> Next letter
+        --> Response doesn't take 10 seconds --> first letter is not 'a' --> Next letter
+
+- -] Out-Of-Band
+----------------
+This occurs when the attackers is unable to use the same channel to launch the attack and gather the results of the attack. It usually relies on the ability for the application to make a network connection, for example a DNS or HTTP request, to deliever data to an attacker. This can also be used in Classic Sqli or Blind SQLi, however we seperated it here.
+
+
+
+
+
+
+
+
+
+
 - ---] References
+======================
+
+# NICE cheatsheet
+https://portswigger.net/web-security/sql-injection/cheat-sheet
+
+# Recommended SQLi video
+https://www.youtube.com/watch?v=1nJgupaUPEQ
 
 # OSCP SQLi Notes
 https://notchxor.github.io/oscp-notes/2-web/sqli/
