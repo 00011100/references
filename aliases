@@ -1,5 +1,5 @@
 # references aliases
-
+# Source me in your zshrc or bashrc 
 alias ref-accesschk="cat ~/Documents/references/ref-accesschk.txt"
 alias ref-asrep-roasting="cat ~/Documents/references/ref-asrep-roasting.txt"
 alias ref-cracking="cat ~/Documents/references/ref-cracking.txt"
