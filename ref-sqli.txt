@@ -2,6 +2,27 @@
     SQL injection
 [-]======================================[-]
 
+
+- ---] References
+======================
+
+# NICE cheatsheet
+https://portswigger.net/web-security/sql-injection/cheat-sheet
+
+# Recommended SQLi video
+https://www.youtube.com/watch?v=1nJgupaUPEQ
+
+# OSCP SQLi Notes
+https://notchxor.github.io/oscp-notes/2-web/sqli/
+
+# Payload all the things - SQL injections cheat sheet
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
+
+# Manual SQL Injection walkthrough
+https://sushant747.gitbooks.io/total-oscp-guide/content/sql-injections.html
+
+
+
 - ---] Overview
 ======================
                                                                                                                                  
@@ -45,10 +66,14 @@ Boolean-Based Blind SQLI is a blind SQLi technique taht uses Boolean conditions 
 - -] Time
 ----------------
 Time-based SQLi is a blind SQLi technique that relies on the database pausing for a specified amount of time, then returning the results, indicating a successful SQL query execution.
+
+- This can't really be done manual. This will have to be scripted with python, measuring the response time.
+
 Example:
     If the first character of the administrator's hashed password is an 'a', wait 10 seconds. 
         --> Response takes 10 seconds --> first letter is 'a' --> Next letter
         --> Response doesn't take 10 seconds --> first letter is not 'a' --> Next letter
+
 
 - -] Out-Of-Band
 ----------------
@@ -56,30 +81,60 @@ This occurs when the attackers is unable to use the same channel to launch the a
 
 
 
+- ---] Testing
+================
+
+- Map the application 
+    + (Visit the URL, walk through the pages accessible, make note of input vectors that talk to the backend, understand how it functions and the logic, enumerate directories,)
+    + Burpsuite can passively monitor all of this while your browse and test.
+
+- Fuzz the application
+    + Submit SQL-specific characters such as ' or ", and look for errors or anomalies
+    + Submit Boolean conditions such as OR1=1 and OR 1=2, and look for differences in the application's response
+    + Submit payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
+    + Submit OAST (out-of-band_ payloads, designed to trigger an OOB networking interaction when executed within an SQL query, and monitor for any resulting interactions.
 
 
-
-
-
-
-
-- ---] References
+- ---] Exploiting Union-Based SQLi
 ======================
 
-# NICE cheatsheet
-https://portswigger.net/web-security/sql-injection/cheat-sheet
+There are two rules for combining the result sets of two queries by using UNION:
+    + The number and the order of the columns must be the same in all queries
+    + The data types must be compatible (Query the application is making vs the query you are making)
 
-# Recommended SQLi video
-https://www.youtube.com/watch?v=1nJgupaUPEQ
+   [00] Exploitation:
+        -------------
+        + Figure out the number of columns that the query is making
+        + Figure the data types of columns (Mainly interested in string data)
+        + Use the UNION opereator to output information from the database
 
-# OSCP SQLi Notes
-https://notchxor.github.io/oscp-notes/2-web/sqli/
+   [01] Determining the number of columns:
+        ---------------------------------
+        + Incrementally inject a series of ORDER BY clauses until you get an error or observe a different behaviour in the application
+            - order by 1--
+            - order by 2--
+            - order by 3--
 
-# Payload all the things - SQL injections cheat sheet
-https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
+            (The ORDER BY position number 3 is out of range and the number of items in the select list) Meaning 2 columns are being used.
 
-# Manual SQL Injection walkthrough
-https://sushant747.gitbooks.io/total-oscp-guide/content/sql-injections.html
+        -----------------------------------------------------
+
+        + Determining the number of columns required in an SQL injection UNION attack using NULL VALUES;
+        + Incrementally inject a series of UNION SELECT payloads specifying a different number of null values until you no longer get an error
+            - ' UNION SELECT NULL--
+
+            (All queries combined using a UNION, INTERSECT or EXCEPT operator must have an equal number of express in their target lists.) This error means we need to increase the NULL value.
+
+    [02] Finding columns with a useful data type:
+         ---------------------------------------
+        + Probe each column to test wheter it can hold string data by submitting a series of UNION SELECT payloads that place a string value into each column in turn.
+        + Simply move down the number of columns
+            - ' UNION SELECT 'a', NULL--
+            - ' UNION SELECT NULL, 'a' --
+            (Do we get an error stating it's not string data type?)
+            
+
+
 
 - ---] Summary
 ======================
