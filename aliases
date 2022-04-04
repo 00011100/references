@@ -18,3 +18,4 @@ alias ref-impacket-mssqlclient="cat ~/Documents/references/ref-impacket-mssqlcli
 alias ref-windows-privesc="cat ~/Documents/references/ref-windows-privesc.txt"
 alias ref-smb="cat ~/Documents/references/ref-smb.txt"
 alias ref-exfil="cat ~/Documents/references/ref-exfil.txt"
+alias ref-update="git pull ~/Documents/references"
