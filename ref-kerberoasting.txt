@@ -14,6 +14,7 @@
 
 With our Windows users, we request Kerberos TGS tickets for accounts that are associated with the SPN records in Active Directory (AD). Service Principle Names (SPN) are typically associated with Service accounts and they allow a client to request a service ticket without having the actual account name, through Kerberos authentication. Kerberoasting does not require any kind of unique privileges. If you have any level of access to a domain, then you can look for accounts that are kerberoastable and carry out the attack against it.
 
+[+] Users can be kerberoasted as well, not just SPNs. (look at using impacket for user)
 [-] Just because you can get the ticket does not mean it's a vulnerability.
 [-] If the service account has a strong password, then cracking it is going to be much harder and your attack will end there.
 [-] You have to crack the hash. They are not passable.

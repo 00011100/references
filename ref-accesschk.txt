@@ -8,9 +8,12 @@
 https://xor.cat/assets/other/Accesschk.zip
 
 accesschk.exe -uwcqv "Authenticated Users" * /accepteula
-accesschk.exe -uwcqv %USERNAME% * /accepteula
+accesschk.exe -uwcqv %USERNAME% * /accepteula # CHECK WEAK SERVICE PERMISSIONS
 accesschk.exe -uwcqv "BUILTIN\Users" * /accepteula 2>nul
 accesschk.exe -uwcqv "Todos" * /accepteula ::Spanish version
+
+
+
 
 
 - ---] Related Commands

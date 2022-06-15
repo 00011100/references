@@ -1,0 +1,55 @@
+[-]======================================[-]
+    Linux privilege escalation 
+[-]======================================[-]
+
+- ---] Checklist
+======================
+
+[Machine]
+----------
+- OS version
+Knowing the distribution (Ubuntu, Debian, FreeBSD, Fedora, SUSE, Red Hat, CentOS, etc.) will give you an idea of the types of tools that may be available. This would also identify the operating system version, for which there may be public exploits available.
+
+- Kernel Version
+As with the OS version, there may be public exploits that target a vulnerability in a specific kernel version
+
+- Running services: 
+Knowing what services are running on the host is important, especially those running as root. A misconfigured or vulnerable service running as root can be an easy win for privilege escalation. 
+
+- Installed packages and versions 
+Like running services, it is important to check for any out-of-date or vulnerable packages that may be easily leveraged for privilege escalation. An example is Screen, which is a common terminal multiplexer (similar to tmux). It allows you to start a session and open many windows or virtual terminals instead of opening multiple terminal sessions. Screen version 4.05.00 suffers from a privilege escalation vulnerability that can be easily leveraged to escalate privileges.
+
+- Logged in Users
+ Knowing which other users are logged into the system and what they are doing can give greater into possible local lateral movement and privilege escalation paths.
+
+- User home directories / SSH keys, Scripts, Configuration files
+ls -la /home/*/*
+
+- Sudo privileges
+sudo -l
+
+- Bash history
+history
+
+- Additional drives and unmounted file systems
+lsblk
+
+- SETUID, SETGID and writeable directories
+find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null # SetUID
+find / -uid 0 -perm -6000 -type f 2>/dev/null. # SetGID
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null # Writeable Files
+
+- Cronjobs
+ls -la /etc/cron.daily
+
+
+
+
+
+- ---] Related Commands
+======================
+
+
+
+- ---] Misc Notes
+======================
