@@ -24,4 +24,5 @@ alias ref-hydra="cat ~/Documents/references/ref-hydra.txt"
 alias ref-lfi="cat ~/Documents/references/ref-lfi.txt"
 alias ref-windows-download="cat ~/Documents/references/ref-windows-download.txt"
 alias ref-bof="cat ~/Documents/references/ref-bof.txt"
+alias ref-enum-windows="cat ~/Documents/references/ref-enum-windows.txt"
 
