@@ -155,11 +155,14 @@ There are two rules for combining the result sets of two queries by using UNION:
 - ---] Quick Commands
 ======================
 
-[+] ' or 1=1 -- -
+#quick
+' or 1=1 -- -
 
-[+] 'select * from users where username=' or 1=1
+#quick 
+'select * from users where username=' or 1=1
 
-
+#quick 
+'OR 1 OR'
 
 
 - ---] Related Commands
