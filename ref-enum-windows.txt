@@ -18,7 +18,7 @@ netsh firewall show state
 findstr /si password *.txt *.ini *.config
 
 # Parsed systeminfo 
-systeminf | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
 
 # Find hotfixes installed
 wmic qfe get Caption,Description,HotFixID,InstalledOn
@@ -26,6 +26,8 @@ wmic qfe get Caption,Description,HotFixID,InstalledOn
 # Find windows drives
 wmic logicaldisk get caption,description,providername
 
+# Find a file
+where /R C:\windows bash.exe
 
 - ---] Related Commands
 ======================
