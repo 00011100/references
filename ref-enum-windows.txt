@@ -1,0 +1,36 @@
+[-]======================================[-]
+    windows enumeration
+[-]======================================[-]
+
+- ---] Quick Commands
+======================
+
+# Windows Windows Defender (AV) enumeration
+sc query windefend
+
+# Windows Firewall enumeration
+netsh advfirewall firewall dump
+
+# Windows Firwall enumeration (legacy)
+netsh firewall show state
+
+# Password Hunting enumeration
+findstr /si password *.txt *.ini *.config
+
+# Parsed systeminfo 
+systeminf | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
+
+# Find hotfixes installed
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+# Find windows drives
+wmic logicaldisk get caption,description,providername
+
+
+- ---] Related Commands
+======================
+
+
+
+- ---] Misc Notes
+======================
